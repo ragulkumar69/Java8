@@ -43,10 +43,12 @@ public class EmployeeStreamAPI {
     	
     	//Write a Stream API expression to group employees by department and find the average salary in each department.
     	Map<String, Double> avgSalary = employees.stream().collect(Collectors.groupingBy(EmployeeStreamAPI::getDepartment, Collectors.averagingDouble(EmployeeStreamAPI::getSalary)));
-    	System.out.println("avgSalary: "+avgSalary);
+    	System.out.println("avgSalary: "+avgSalary); //avgSalary: {Finance=60000.0, HR=52500.0, IT=75000.0}
+    	
+    	
     	//Write a Stream API expression to group employees by department, and for each group, collect a list of employee names (not objects, just names).
     	Map<String, List<String>> departmentToNames = employees.stream().collect(Collectors.groupingBy(EmployeeStreamAPI::getDepartment, Collectors.mapping(EmployeeStreamAPI::getName, Collectors.toList())));
-    	System.out.println("departmentToNames: "+departmentToNames);
+    	System.out.println("departmentToNames: "+departmentToNames); //departmentToNames: {Finance=[Eve], HR=[Alice, David], IT=[Bob, Charlie]}
     	
     	List<EmployeeStreamAPI> employeesDept = Arrays.asList(
     		    new EmployeeStreamAPI("Alice", "IT", 30),
@@ -58,7 +60,7 @@ public class EmployeeStreamAPI {
     	//Write a Stream API expression to find the oldest employee in each department, and return a Map<String, String> where:
     	// #the key is the department name, #the value is the name of the oldest employee in that department
     	Map<String, String> empDept = employeesDept.stream().collect(Collectors.groupingBy(EmployeeStreamAPI::getDepartment, Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparing(EmployeeStreamAPI::getSalary)), Optional -> Optional.get().getName())));
-    	System.out.println("empDept result: "+empDept);
+    	System.out.println("empDept result: "+empDept); //empDept result: {Finance=David, HR=Eve, IT=Alice}
     	
     }
 }

@@ -62,34 +62,34 @@ public class RagulStreamAPI {
 	    List<String> ListOfString = new ArrayList<>(Arrays.asList("apple","banana","orange","apple","grapes","Kiwi"));
         
         List<Integer> LengthOfString = ListOfString.stream().map( len -> len.length()).collect(Collectors.toList());
-        System.out.println("LengthOfString: "+LengthOfString);
+        System.out.println("LengthOfString: "+LengthOfString); //LengthOfString: [5, 6, 6, 5, 6, 4]
         
         List<String> GreaterThen5 = ListOfString.stream().filter(len -> len.length() > 5).collect(Collectors.toList());
-        System.out.println("GreaterThen5: "+GreaterThen5);
+        System.out.println("GreaterThen5: "+GreaterThen5); //GreaterThen5: [banana, orange, grapes]
         
         List<Integer> GreaterThen5WithFilterAndMap = ListOfString.stream().filter( str -> str.length() > 5).map( str -> str.length()).collect(Collectors.toList());
-        System.out.println("GreaterThen5WithFilterAndMap: "+GreaterThen5WithFilterAndMap);
+        System.out.println("GreaterThen5WithFilterAndMap: "+GreaterThen5WithFilterAndMap); //GreaterThen5WithFilterAndMap: [6, 6, 6]
         
         Long CountGreaterThen5 = ListOfString.stream().filter( str -> str.length() > 5).count();
-        System.out.println("CountGreaterThen5: "+CountGreaterThen5);
+        System.out.println("CountGreaterThen5: "+CountGreaterThen5); //CountGreaterThen5: 3
         
         List<String> UpperCase = ListOfString.stream().map(str ->str.toUpperCase()).collect(Collectors.toList());
-        System.out.println("UpperCase: "+UpperCase);
+        System.out.println("UpperCase: "+UpperCase); //UpperCase: [APPLE, BANANA, ORANGE, APPLE, GRAPES, KIWI]
         
         List<String> Vowels = ListOfString.stream().filter( str -> str.length() > 5 && "aeiouAEIOU".indexOf(str.charAt(0))!= -1).collect(Collectors.toList());
-        System.out.println("Vowels: "+Vowels);
+        System.out.println("Vowels: "+Vowels); //Vowels: [orange]
         
         String longestString = ListOfString.stream().distinct().max(Comparator.comparingInt(String::length)).orElse(null);
-        System.out.println("longestString: "+longestString);
+        System.out.println("longestString: "+longestString); //longestString: banana
         
         Map<Character, Long> frequencyOfCharacter = ListOfString.stream().flatMap(str -> str.chars().mapToObj(c -> (char) c)).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
-        System.out.println("frequencyOfCharacter: "+frequencyOfCharacter);
+        System.out.println("frequencyOfCharacter: "+frequencyOfCharacter);  //frequencyOfCharacter: {a=7, b=1, e=4, g=2, i=2, K=1, l=2, n=3, o=1, p=5, r=2, s=1, w=1}
 	    
         String SeparatedByCommas = ListOfString.stream().collect(Collectors.joining(",","{","}"));
-        System.out.println("SeparatedByCommas: "+SeparatedByCommas);
+        System.out.println("SeparatedByCommas: "+SeparatedByCommas); //SeparatedByCommas: {apple,banana,orange,apple,grapes,Kiwi}
         
         Map<Integer, List<String>> GroupStringsByLength = ListOfString.stream().collect(Collectors.groupingBy(str->str.length()));
-        System.out.println("GroupStringsByLength: "+GroupStringsByLength);
+        System.out.println("GroupStringsByLength: "+GroupStringsByLength); //GroupStringsByLength: {4=[Kiwi], 5=[apple, apple], 6=[banana, orange, grapes]}
 	    
 	    
 	}

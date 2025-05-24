@@ -16,14 +16,14 @@ public class StreamAPIChatGPT {
 		// collect the result into a list.
 		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 		List<Integer> filterEvenSquare = numbers.stream().filter(n -> n % 2 == 0).map(n -> n * n).collect(Collectors.toList());
-		System.out.println("filterEvenSquare: "+filterEvenSquare);
+		System.out.println("filterEvenSquare: "+filterEvenSquare); //filterEvenSquare: [4, 16, 36]
 		
 		// Write a Stream API expression to find the frequency of each word and return
 		// it as a Map<String, Long>.
 		List<String> wordss = Arrays.asList("apple", "banana", "apple", "orange", "banana", "grape");
 		Map<String, Long> frequencyOfEachWord = wordss.stream()
 				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-		System.out.println("frequencyOfEachWord: "+frequencyOfEachWord);
+		System.out.println("frequencyOfEachWord: "+frequencyOfEachWord); //frequencyOfEachWord: {orange=1, banana=2, apple=2, grape=1}
 		
 		// Write a Stream API expression to create a single string that joins all words
 		// in uppercase, separated by commas.
@@ -37,23 +37,23 @@ public class StreamAPIChatGPT {
 		Set<Integer> uniqueNumber = new HashSet<Integer>();
 		Set<Integer> FindDuplicateElements = numbersDup.stream().filter(num -> !uniqueNumber.add(num))
 				.collect(Collectors.toSet());
-		System.out.println("FindDuplicateElements: "+FindDuplicateElements);
+		System.out.println("FindDuplicateElements: "+FindDuplicateElements); //FindDuplicateElements: [98, 15]
 		
 		//Write a Stream API expression to find the square of each number and filter those whose square is greater than 20.
 		List<Integer> sqNumbers = Arrays.asList(3, 9, 2, 8, 6, 5);
 		List<Integer> SquareEachNumber = sqNumbers.stream().map(sq -> sq*sq).filter(sq -> sq > 20).collect(Collectors.toList());
-		System.out.println("SquareEachNumber: "+SquareEachNumber);
+		System.out.println("SquareEachNumber: "+SquareEachNumber); //SquareEachNumber: [81, 64, 36, 25]
 		
 //		Write a Stream API expression to remove duplicates and sort the names in alphabetical order.
 		List<String> names = Arrays.asList("John", "Alice", "Bob", "John", "David", "Alice");
 		List<String> removeDuplicatesAndSort = names.stream().distinct().sorted().collect(Collectors.toList());
-		System.out.println("removeDuplicatesAndSort: "+removeDuplicatesAndSort);
+		System.out.println("removeDuplicatesAndSort: "+removeDuplicatesAndSort); //removeDuplicatesAndSort: [Alice, Bob, David, John]
 		
 		//Write a Stream API expression to partition the numbers into two groups:
 		//one for even numbers, one for odd numbers
 		List<Integer> numbersOE = Arrays.asList(4, 5, 6, 7, 8, 9, 10);
 		Map<Boolean, List<Integer>> SplitOddEven = numbersOE.stream().collect(Collectors.partitioningBy(num -> num%2 == 0));
-		System.out.println("SplitOddEven: "+SplitOddEven);
+		System.out.println("SplitOddEven: "+SplitOddEven); //SplitOddEven: {false=[5, 7, 9], true=[4, 6, 8, 10]}
 		
 		//Write a Stream API expression to split all the sentences into words, flatten them into a single stream, convert them to lowercase, remove duplicates, and collect into a sorted list.
 		List<String> sentences = Arrays.asList(
@@ -63,7 +63,7 @@ public class StreamAPIChatGPT {
 			);
 		List<String> SplitIntoWordsAndLowercase = sentences.stream().flatMap(sentence -> Arrays.stream(sentence.split(" ")).map(String::toLowerCase)).distinct().sorted().collect(Collectors.toList());
 		System.out.println("SplitIntoWordsAndLowercase: "+SplitIntoWordsAndLowercase);
-		
+		//SplitIntoWordsAndLowercase: [api, awesome, i, is, java, love, powerful, programming, stream]
 		
 		
 	}
